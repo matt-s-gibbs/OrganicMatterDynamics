@@ -1,0 +1,128 @@
+﻿// Mundic //
+//Max_16.4m//
+//Functions.Variables.$Operations.pw_Mundic.Relationship=[[1 14.75][227 14.75][228 14.8][244 16.4][273 16.4][289 14.8][290 14.75][366 14.75]]
+//Functions.Functions.$Operations.f_Mundic_OpsYear.Expression=2014
+//Nodes.Mundic.Minimum Operating Level=14.75m
+//Nodes.Mundic.Maximum Operating Level=$Operations.f_MundicOps
+//Mid_15.6m//
+//Functions.Variables.$Operations.pw_Mundic.Relationship=[[1 14.75][235 14.75][236 14.8][244 15.6][273 15.6][281 14.8][282 14.75][366 14.75]]
+//Functions.Functions.$Operations.f_Mundic_OpsYear.Expression=2014
+//Nodes.Mundic.Minimum Operating Level=14.75m
+//Nodes.Mundic.Maximum Operating Level=$Operations.f_MundicOps
+//Low_15.3m//
+//Functions.Variables.$Operations.pw_Mundic.Relationship=[[1 14.75][238 14.75][239 14.8][244 15.6][273 15.6][278 14.8][279 14.75][366 14.75]]
+//Functions.Functions.$Operations.f_Mundic_OpsYear.Expression=2014
+//Nodes.Mundic.Minimum Operating Level=14.75m
+//Nodes.Mundic.Maximum Operating Level=$Operations.f_MundicOps
+//NO Ops//
+Nodes.Mundic.Minimum Operating Level=14.75m
+Nodes.Mundic.Maximum Operating Level=14.75m
+
+// Pike //
+//Max_16.4m//
+//Functions.Variables.$Operations.pw_Pike.Relationship=[[1 14.55][225 14.55][226 14.6][244 16.4][273 16.4][291 14.6][292 14.55][366 14.55]]/
+//Functions.Functions.$Operations.f_Pike_OpsYear.Expression=2014
+//Nodes.Upper Pike.Minimum Operating Level=14.55m
+//Nodes.Upper Pike.Maximum Operating Level=$Operations.f_PikeOps
+//Functions.Functions.$Storages.Pike.f_SaltWashoff.Expression=128000
+//Functions.Functions.$Storages.Pike.f_TotalSaltLoad.Expression=$f_SaltLoad_SW+$f_SaltLoad_GW_Max
+//Functions.Functions.$Storages.Pike.f_Pike_Target.Expression=16.4
+//Mid_15.6m//
+//Functions.Variables.$Operations.pw_Pike.Relationship=[[1 14.55][233 14.55][234 14.6][244 15.6][273 15.6][283 14.6][284 14.55][366 14.55]]
+//Functions.Functions.$Operations.f_Pike_OpsYear.Expression=2014
+//Nodes.Upper Pike.Minimum Operating Level=14.55m
+//Nodes.Upper Pike.Maximum Operating Level=$Operations.f_PikeOps
+//Functions.Functions.$Storages.Pike.f_SaltWashoff.Expression=31000
+//Functions.Functions.$Storages.Pike.f_TotalSaltLoad.Expression=$f_SaltLoad_SW+$f_SaltLoad_GW_SF
+//Functions.Functions.$Storages.Pike.f_Pike_Target.Expression=15.6
+//Low_15.3m//
+//Functions.Variables.$Operations.pw_Pike.Relationship=[[1 14.55][236 14.55][237 14.6][244 15.3][273 15.3][280 14.6][281 14.55][366 14.55]]
+//Functions.Functions.$Operations.f_Pike_OpsYear.Expression=2014
+//Nodes.Upper Pike.Minimum Operating Level=14.55m
+//Nodes.Upper Pike.Maximum Operating Level=$Operations.f_PikeOps
+//Functions.Functions.$Storages.Pike.f_SaltWashoff.Expression=31000
+//Functions.Functions.$Storages.Pike.f_TotalSaltLoad.Expression=$f_SaltLoad_SW+$f_SaltLoad_GW_SF
+//Functions.Functions.$Storages.Pike.f_Pike_Target.Expression=15.3
+//NO Ops
+Nodes.Upper Pike.Minimum Operating Level=14.55m
+Nodes.Upper Pike.Maximum Operating Level=14.55m
+Functions.Functions.$Storages.Pike.f_TotalSaltLoad.Expression=0
+
+// Lock5 //
+//Mid_Max//
+//Functions.Variables.$Operations.pw_Lock5.Relationship=[[1 16.3][239 16.3][244 16.8][273 16.8][278 16.3][366 16.3]]
+//Functions.Functions.$Operations.f_Lock5_OpsYear.Expression=2014
+//Nodes.Lock 5.Minimum Operating Level=16.3m
+//Nodes.Lock 5.Maximum Operating Level=$Operations.f_Lock5_Ops
+//NO Ops//
+Nodes.Lock 5.Minimum Operating Level=16.3m
+Nodes.Lock 5.Maximum Operating Level=16.3m
+
+// Lock 4 //
+//Max_14.34m//
+//Functions.Variables.$Operations.pw_Lock4.Relationship=[[1 13.2][232 13.2][233 13.24][244 14.34][273 14.34][284 13.24][285 13.2][366 13.2]]
+//Functions.Functions.$Operations.f_Lock4_OpsYear.Expression=2014
+//Nodes.Lock 4.Minimum Operating Level=13.2m
+//Nodes.Lock 4.Maximum Operating Level=$Operations.f_Lock4Ops
+//Mid_13.8m//
+//Functions.Variables.$Operations.pw_Lock4.Relationship=[[1 13.2][238 13.2][244 13.8][273 13.8][279 13.2][366 13.2]]
+//Functions.Functions.$Operations.f_Lock4_OpsYear.Expression=2014
+//Nodes.Lock 4.Minimum Operating Level=13.2m
+//Nodes.Lock 4.Maximum Operating Level=$Operations.f_Lock4Ops
+//Low_13.5m//
+//Functions.Variables.$Operations.pw_Lock4.Relationship=[[1 13.2][241 13.2][244 13.5][273 13.5][276 13.2][366 13.2]]
+//Functions.Functions.$Operations.f_Lock4_OpsYear.Expression=2014
+//Nodes.Lock 4.Minimum Operating Level=13.2m
+//Nodes.Lock 4.Maximum Operating Level=$Operations.f_Lock4Ops
+//Low_NO Ops//
+Nodes.Lock 4.Minimum Operating Level=13.2m
+Nodes.Lock 4.Maximum Operating Level=13.2m
+
+// Katarapko//
+//Max_13.5m//
+//Functions.Variables.$Operations.pw_Kat.Relationship=[[1 9.9][208 9.9][244 13.5][273 13.5][309 9.9][366 9.9]]
+//Functions.Functions.$Operations.f_Kat_OpsYear.Expression=2014
+//Nodes.Katarapko.Minimum Operating Level=9.9m
+//Nodes.Katarapko.Maximum Operating Level=$Operations.f_KatOps
+//Nodes.Katarapko.Constituents.Salt - Additional Inflow Load.Data=$Storages.Kat.f_SaltLoad_GW_Max
+//Functions.Functions.$Storages.Kat.f_Kat_Target.Expression=13.5
+//Mid_13m//
+//Functions.Variables.$Operations.pw_Kat.Relationship=[[1 9.9][213 9.9][244 13][273 13][304 9.9][366 9.9]]
+//Functions.Functions.$Operations.f_Kat_OpsYear.Expression=2014
+//Nodes.Katarapko.Minimum Operating Level=9.9m
+//Nodes.Katarapko.Maximum Operating Level=$Operations.f_KatOps
+//Functions.Functions.$Storages.Kat.f_SaltLoad_GW_Max.Expression=0
+//Functions.Functions.$Storages.Kat.f_Kat_Target.Expression=13
+//Low_12.5m//
+//Functions.Variables.$Operations.pw_Kat.Relationship=[[1 9.9][218 9.9][244 12.5][273 12.5][299 9.9][366 9.9]]
+//Functions.Functions.$Operations.f_Kat_OpsYear.Expression=2014
+//Nodes.Katarapko.Minimum Operating Level=9.9m
+//Nodes.Katarapko.Maximum Operating Level=$Operations.f_KatOps
+//Functions.Functions.$Storages.Kat.f_SaltLoad_GW_Max.Expression=0
+//Functions.Functions.$Storages.Kat.f_Kat_Target.Expression=12.5
+//NO Ops//
+Nodes.Katarapko.Minimum Operating Level=9.9m
+Nodes.Katarapko.Maximum Operating Level=9.9m
+Functions.Functions.$Storages.Kat.f_SaltLoad_GW_Max.Expression=0
+
+
+
+// Lock 3 //
+//Max//
+//Functions.Variables.$Operations.pw_Lock3.Relationship=[[1 9.8][189 9.8][194 9.8][199 9.9][204 10][209 10][214 10.1][219 10.1][224 10.2][229 10.2][234 10.3][239 10.3][244 10.4][258 10.4][307 9.8][366 9.8]]
+//Functions.Functions.$Operations.f_Lock3_OpsYear.Expression=2014
+//Nodes.Lock 3.Minimum Operating Level=9.8m
+//Nodes.Lock 3.Maximum Operating Level=$Operations.f_Lock3Ops
+//Mid//
+//Functions.Variables.$Operations.pw_Lock3.Relationship=[[1 9.8][238 9.8][239 9.89][244 10.39][273 10.39][278 9.89][279 9.8][366 9.8]]
+//Functions.Functions.$Operations.f_Lock3_OpsYear.Expression=2014
+//Nodes.Lock 3.Minimum Operating Level=9.8m
+//Nodes.Lock 3.Maximum Operating Level=$Operations.f_Lock3Ops
+//Low//
+//Functions.Variables.$Operations.pw_Lock3.Relationship=[[1 9.8][240 9.8][244 10.1][273 10.1][276 9.8][366 9.8]]
+//Functions.Functions.$Operations.f_Lock3_OpsYear.Expression=2014
+//Nodes.Lock 3.Minimum Operating Level=9.8m
+//Nodes.Lock 3.Maximum Operating Level=$Operations.f_Lock3Ops
+//NO Ops//
+Nodes.Lock 3.Minimum Operating Level=9.8m
+Nodes.Lock 3.Maximum Operating Level=9.8m

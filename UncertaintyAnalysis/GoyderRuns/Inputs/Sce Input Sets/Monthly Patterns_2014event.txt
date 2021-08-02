@@ -1,0 +1,126 @@
+﻿Nodes.Lock 6.Rainfall=$Climate.24004.24004_rain
+Nodes.Chowilla Regulator 254.Rainfall=$Climate.24004.24004_rain
+Nodes.Woolshed R256.Rainfall=$Climate.24004.24004_rain
+Nodes.Floodplain retention 389.Rainfall=$Climate.24004.24004_rain
+Nodes.Werta Wert 388.Rainfall=$Climate.24004.24004_rain
+Nodes.Coombool Swamp 283.Rainfall=$Climate.24004.24004_rain
+Nodes.Lake Limbra 282.Rainfall=$Climate.24004.24004_rain
+Nodes.Gum Flat 281.Rainfall=$Climate.24004.24004_rain
+Nodes.Lake Littra 280.Rainfall=$Climate.24004.24004_rain
+Links.R105.Rainfall=$Climate.24004.24004_rain
+
+Nodes.Lock 6.Evaporation=$Climate.24004.24004_evap
+Nodes.Chowilla Regulator 254.Evaporation=$Climate.24004.24004_evap
+Nodes.Woolshed R256.Evaporation=$Climate.24004.24004_evap
+Nodes.Floodplain retention 389.Evaporation=$Climate.24004.24004_evap
+Nodes.Werta Wert 388.Evaporation=$Climate.24004.24004_evap
+Nodes.Coombool Swamp 283.Evaporation=$Climate.24004.24004_evap
+Nodes.Lake Limbra 282.Evaporation=$Climate.24004.24004_evap
+Nodes.Gum Flat 281.Evaporation=$Climate.24004.24004_evap
+Nodes.Lake Littra 280.Evaporation=$Climate.24004.24004_evap
+Links.R105.Evaporation=$Climate.24004.24004_evap
+
+Nodes.Lock 5.Rainfall=$Climate.24016.24016_rain
+Nodes.Lake Meretti.Rainfall=$Climate.24016.24016_rain
+Nodes.Lake Woolpolool.Rainfall=$Climate.24016.24016_rain
+Nodes.Upper Pike.Rainfall=$Climate.24016.24016_rain
+Nodes.Mundic.Rainfall=$Climate.24016.24016_rain
+Links.Lower Pike.Rainfall=$Climate.24016.24016_rain
+
+Nodes.Lock 5.Evaporation=$Climate.24016.24016_evap
+Nodes.Lake Meretti.Evaporation=$Climate.24016.24016_evap
+Nodes.Lake Woolpolool.Evaporation=$Climate.24016.24016_evap
+Nodes.Upper Pike.Evaporation=$Climate.24016.24016_evap
+Nodes.Mundic.Evaporation=$Climate.24016.24016_evap
+Links.Lower Pike.Evaporation=$Climate.24016.24016_evap
+
+Nodes.Lock 4.Rainfall=$Climate.24008.24008_rain
+Nodes.Katarapko.Rainfall=$Climate.24008.24008_rain
+Nodes.Gurra Gurra.Rainfall=$Climate.24008.24008_rain
+Nodes.Berri.Rainfall=$Climate.24008.24008_rain
+
+Nodes.Lock 4.Evaporation=$Climate.24008.24008_evap
+Nodes.Katarapko.Evaporation=$Climate.24008.24008_evap
+Nodes.Gurra Gurra.Evaporation=$Climate.24008.24008_evap
+Nodes.Berri.Evaporation=$Climate.24008.24008_evap
+
+Nodes.Lock 3.Rainfall=$Climate.24007.24007_rain
+Nodes.Lake Bonney (4260596).Rainfall=$Climate.24007.24007_rain
+
+Nodes.Lock 3.Evaporation=$Climate.24007.24007_evap
+Nodes.Lake Bonney (4260596).Evaporation=$Climate.24007.24007_evap
+
+Nodes.Lock 2.Rainfall=$Climate.24012.24012_rain
+Nodes.Lock 2.Evaporation=$Climate.24012.24012_evap
+
+Nodes.Lock 1.Rainfall=$Climate.24578.24578_rain
+Nodes.Lock 1.Evaporation=$Climate.24578.24578_evap
+
+Links.R120.Rainfall=$Climate.24564.24564_rain
+Links.R120.Evaporation=$Climate.24564.24564_evap
+
+Links.R121.Rainfall=$Climate.24547.24547_rain
+Links.R121.Evaporation=$Climate.24547.24547_evap
+
+Links.R122.Rainfall=$Climate.24517.24517_rain
+Links.R122.Evaporation=$Climate.24517.24517_evap
+
+Links.R123.Rainfall=$Climate.24536.f_24536_rain
+Links.R123.Evaporation=$Climate.24536.f_24536_evap
+
+Links.R124 (0.639).Rainfall=$Climate.24521.f_24521_rain
+Links.R124 (0.639).Evaporation=$Climate.24521.f_24521_evap
+Links.R124 (0.361).Rainfall=$Climate.24521.f_24521_rain
+Links.R124 (0.361).Evaporation=$Climate.24521.f_24521_evap
+
+Nodes.Lake Alexandrina.Rainfall=$Climate.f_LakeAlexandrina_Rain
+Nodes.Lake Alexandrina.Evaporation=$Climate.f_LakeAlexandrina_Evap
+
+Nodes.Lake Albert.Rainfall=$Climate.f_LakeAlexandrina_Rain
+Nodes.Lake Albert.Evaporation=$Climate.f_LakeAlexandrina_Evap
+
+Nodes.SA IRRI Riverlands.Demand Model.Demand=$Diversions.f_Riverland
+Nodes.SA IRRI LMRIA.Demand Model.Demand=$Diversions.f_LMRIA
+Nodes.SA IRRI Lower Lakes.Demand Model.Demand=$Diversions.f_LowerLakes
+Nodes.SA IRRI Angas Bremmer.Demand Model.Demand=$Diversions.f_AngasBremmer
+Nodes.SA CT Murray.Demand Model.Demand=$Diversions.f_sacount_pattern
+Nodes.SA Stockwell Pipeline.Demand Model.Demand=$Diversions.f_srstock_pattern
+Nodes.SA Adelaide Pipeline.Demand Model.Demand=$Diversions.f_mannumADL_pattern
+Nodes.SA Onkaparinga Pipeline.Demand Model.Demand=$Diversions.f_mtbold_pattern
+
+
+Nodes.Inflow 28.Flow=Flow to SA_csv.Discharge
+Nodes.Inflow 28.Constituents.Salt - Variable Gauged Concentration.Data=Observed Salinity_Border_OldCustomHouse_csv.Salinity
+//Nodes.Inflow 28.Constituents.DO - Variable Gauged Concentration.Data=20 mg/l
+//Nodes.Inflow 28.Constituents.DOC - Variable Gauged Concentration.Data=0 mg/l
+//Nodes.Gauge 107.Constituents.Salt - Variable Gauged Concentration.Set To Metered Value=True
+//Nodes.Gauge 107.Constituents.Salt - Variable Gauged Concentration.Data=DS Chowilla_Salinity_csv.Salinity
+
+// Lock 6 //
+Nodes.Lock 6.Minimum Operating Level=HistoricalLockLevels_CSV.Lock6
+Nodes.Lock 6.Maximum Operating Level=HistoricalLockLevels_CSV.Lock6
+// Chowilla //
+Nodes.Chowilla Regulator 254.Minimum Operating Level=HistoricalLockLevels_CSV.Chowilla
+Nodes.Chowilla Regulator 254.Maximum Operating Level=HistoricalLockLevels_CSV.Chowilla
+// Lock5 //
+Nodes.Lock 5.Minimum Operating Level=HistoricalLockLevels_CSV.Lock5
+Nodes.Lock 5.Maximum Operating Level=HistoricalLockLevels_CSV.Lock5
+// Pike //
+Nodes.Upper Pike.Minimum Operating Level=14.55m
+Nodes.Upper Pike.Maximum Operating Level=14.55m
+// Lock 4 //
+Nodes.Lock 4.Minimum Operating Level=HistoricalLockLevels_CSV.Lock4
+Nodes.Lock 4.Maximum Operating Level=HistoricalLockLevels_CSV.Lock4
+// Katarapko//
+Nodes.Katarapko.Minimum Operating Level=9.9m
+Nodes.Katarapko.Maximum Operating Level=9.9m
+// Lock 3 //
+Nodes.Lock 3.Minimum Operating Level=HistoricalLockLevels_CSV.Lock3
+Nodes.Lock 3.Maximum Operating Level=HistoricalLockLevels_CSV.Lock3
+// Lock 2//
+Nodes.Lock 2.Minimum Operating Level=HistoricalLockLevels_CSV.Lock2
+Nodes.Lock 2.Maximum Operating Level=HistoricalLockLevels_CSV.Lock2
+//Lock 1//
+Nodes.Lock 1.Minimum Operating Level=HistoricalLockLevels_CSV.Lock1
+Nodes.Lock 1.Maximum Operating Level=HistoricalLockLevels_CSV.Lock1
+

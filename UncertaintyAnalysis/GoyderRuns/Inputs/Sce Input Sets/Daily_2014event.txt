@@ -1,0 +1,119 @@
+﻿Nodes.Lock 6.Rainfall=24004_climate_csv.Rain
+Nodes.Chowilla Regulator 254.Rainfall=24004_climate_csv.Rain
+Nodes.Woolshed R256.Rainfall=24004_climate_csv.Rain
+Nodes.Floodplain retention 389.Rainfall=24004_climate_csv.Rain
+Nodes.Werta Wert 388.Rainfall=24004_climate_csv.Rain
+Nodes.Coombool Swamp 283.Rainfall=24004_climate_csv.Rain
+Nodes.Lake Limbra 282.Rainfall=24004_climate_csv.Rain
+Nodes.Gum Flat 281.Rainfall=24004_climate_csv.Rain
+Nodes.Lake Littra 280.Rainfall=24004_climate_csv.Rain
+Links.R105.Rainfall=24004_climate_csv.Rain
+
+Nodes.Lock 6.Evaporation=24004_climate_csv.Mlake
+Nodes.Chowilla Regulator 254.Evaporation=24004_climate_csv.Mlake
+Nodes.Woolshed R256.Evaporation=24004_climate_csv.Mlake
+Nodes.Floodplain retention 389.Evaporation=24004_climate_csv.Mlake
+Nodes.Werta Wert 388.Evaporation=24004_climate_csv.Mlake
+Nodes.Coombool Swamp 283.Evaporation=24004_climate_csv.Mlake
+Nodes.Lake Limbra 282.Evaporation=24004_climate_csv.Mlake
+Nodes.Gum Flat 281.Evaporation=24004_climate_csv.Mlake
+Nodes.Lake Littra 280.Evaporation=24004_climate_csv.Mlake
+Links.R105.Evaporation=24004_climate_csv.Mlake
+
+Nodes.Lock 5.Rainfall=24016_climate_csv.Rain
+Nodes.Lake Meretti.Rainfall=24016_climate_csv.Rain
+Nodes.Lake Woolpolool.Rainfall=24016_climate_csv.Rain
+Nodes.Upper Pike.Rainfall=24016_climate_csv.Rain
+Nodes.Mundic.Rainfall=24016_climate_csv.Rain
+Links.Lower Pike.Rainfall=24016_climate_csv.Rain
+
+Nodes.Lock 5.Evaporation=24016_climate_csv.Mlake
+Nodes.Lake Meretti.Evaporation=24016_climate_csv.Mlake
+Nodes.Lake Woolpolool.Evaporation=24016_climate_csv.Mlake
+Nodes.Upper Pike.Evaporation=24016_climate_csv.Mlake
+Nodes.Mundic.Evaporation=24016_climate_csv.Mlake
+Links.Lower Pike.Evaporation=24016_climate_csv.Mlake
+
+Nodes.Lock 4.Rainfall=24008_climate_csv.Rain
+Nodes.Katarapko.Rainfall=24008_climate_csv.Rain
+Nodes.Gurra Gurra.Rainfall=24008_climate_csv.Rain
+Nodes.Berri.Rainfall=24008_climate_csv.Rain
+
+Nodes.Lock 4.Evaporation=24008_climate_csv.Mlake
+Nodes.Katarapko.Evaporation=24008_climate_csv.Mlake
+Nodes.Gurra Gurra.Evaporation=24008_climate_csv.Mlake
+Nodes.Berri.Evaporation=24008_climate_csv.Mlake
+
+Nodes.Lock 3.Rainfall=24007_climate_csv.Rain
+Nodes.Lake Bonney (4260596).Rainfall=24007_climate_csv.Rain
+
+Nodes.Lock 3.Evaporation=24007_climate_csv.Mlake
+Nodes.Lake Bonney (4260596).Evaporation=24007_climate_csv.Mlake
+
+Nodes.Lock 2.Rainfall=24012_climate_csv.Rain
+Nodes.Lock 2.Evaporation=24012_climate_csv.Mlake
+
+Nodes.Lock 1.Rainfall=24578_climate_csv.Rain
+Nodes.Lock 1.Evaporation=24578_climate_csv.Mlake
+
+Links.R120.Rainfall=24564_climate_csv.Rain
+Links.R120.Evaporation=24564_climate_csv.Mlake
+
+Links.R121.Rainfall=24547_climate_csv.Rain
+Links.R121.Evaporation=24547_climate_csv.Mlake
+
+Links.R122.Rainfall=24517_climate_csv.Rain
+Links.R122.Evaporation=24517_climate_csv.Mlake
+
+Links.R123.Rainfall=24536_climate_csv.Rain
+Links.R123.Evaporation=24536_climate_csv.Mlake
+
+Links.R124 (0.639).Rainfall=24521_climate_csv.Rain
+Links.R124 (0.639).Evaporation=24521_climate_csv.Mlake
+Links.R124 (0.361).Rainfall=24521_climate_csv.Rain
+Links.R124 (0.361).Evaporation=24521_climate_csv.Mlake
+
+Nodes.Lake Alexandrina.Rainfall=$Climate.f_LakeAlexandrina_Rain
+Nodes.Lake Alexandrina.Evaporation=$Climate.f_LakeAlexandrina_Evap
+
+Nodes.Lake Albert.Rainfall=$Climate.f_LakeAlexandrina_Rain
+Nodes.Lake Albert.Evaporation=$Climate.f_LakeAlexandrina_Evap
+
+
+Nodes.Inflow 28.Flow=Flow to SA_csv.Discharge
+Nodes.Inflow 28.Constituents.Salt - Variable Gauged Concentration.Data=Observed Salinity_Border_OldCustomHouse_csv.Salinity
+//Nodes.Inflow 28.Constituents.DO - Variable Gauged Concentration.Data=20 mg/l
+//Nodes.Inflow 28.Constituents.DOC - Variable Gauged Concentration.Data=0 mg/l
+Nodes.Gauge 107.Constituents.Salt - Variable Gauged Concentration.Set To Metered Value=True
+Nodes.Gauge 107.Constituents.Salt - Variable Gauged Concentration.Data=DS Chowilla_Salinity_csv.Salinity
+
+// Lock 6 //
+Nodes.Lock 6.Minimum Operating Level=HistoricalLockLevels_CSV.Lock6
+Nodes.Lock 6.Maximum Operating Level=HistoricalLockLevels_CSV.Lock6
+// Chowilla //
+Nodes.Chowilla Regulator 254.Minimum Operating Level=HistoricalLockLevels_CSV.Chowilla
+Nodes.Chowilla Regulator 254.Maximum Operating Level=HistoricalLockLevels_CSV.Chowilla
+// Lock5 //
+Nodes.Lock 5.Minimum Operating Level=HistoricalLockLevels_CSV.Lock5
+Nodes.Lock 5.Maximum Operating Level=HistoricalLockLevels_CSV.Lock5
+// Pike //
+Nodes.Upper Pike.Minimum Operating Level=14.55m
+Nodes.Upper Pike.Maximum Operating Level=14.55m
+// Lock 4 //
+Nodes.Lock 4.Minimum Operating Level=HistoricalLockLevels_CSV.Lock4
+Nodes.Lock 4.Maximum Operating Level=HistoricalLockLevels_CSV.Lock4
+// Katarapko//
+Nodes.Katarapko.Minimum Operating Level=9.9m
+Nodes.Katarapko.Maximum Operating Level=9.9m
+// Lock 3 //
+Nodes.Lock 3.Minimum Operating Level=HistoricalLockLevels_CSV.Lock3
+Nodes.Lock 3.Maximum Operating Level=HistoricalLockLevels_CSV.Lock3
+// Lock 2//
+Nodes.Lock 2.Minimum Operating Level=HistoricalLockLevels_CSV.Lock2
+Nodes.Lock 2.Maximum Operating Level=HistoricalLockLevels_CSV.Lock2
+//Lock 1//
+Nodes.Lock 1.Minimum Operating Level=HistoricalLockLevels_CSV.Lock1
+Nodes.Lock 1.Maximum Operating Level=HistoricalLockLevels_CSV.Lock1
+
+
+

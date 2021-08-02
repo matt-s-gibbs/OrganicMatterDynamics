@@ -1,0 +1,1 @@
+"C:\Source\Source_4.9.0.9485\RiverSystem.CommandLine.exe" -m Server -p "River Murray Model 4.9_Nov2019_ScExtreme.rsproj" -a "net.tcp://localhost:6786/eWater/Services/RiverSystemService"

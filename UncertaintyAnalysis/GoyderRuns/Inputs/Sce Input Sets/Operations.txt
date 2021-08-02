@@ -1,0 +1,50 @@
+﻿
+Nodes.Inflow 28.Flow=10000 ML/d
+//Nodes.Inflow 28.Flow=$f_QSA_AOP
+Nodes.Inflow 28.Constituents.Salt - Variable Gauged Concentration.Data=150 mg/l
+Nodes.Inflow 28.Constituents.DO - Variable Gauged Concentration.Data=20 mg/l
+Nodes.Inflow 28.Constituents.DOC - Variable Gauged Concentration.Data=0 mg/l
+Nodes.Gauge 107.Constituents.Salt - Variable Gauged Concentration.Data=0 mg/l
+Nodes.Gauge 107.Constituents.Salt - Variable Gauged Concentration.Set To Metered Value=False
+
+// Chowilla //
+Nodes.Chowilla Regulator 254.Minimum Operating Level=16.45m
+Nodes.Chowilla Regulator 254.Maximum Operating Level=16.45m
+
+// Lock 6 //
+Nodes.Lock 6.Minimum Operating Level=19.25m
+Nodes.Lock 6.Maximum Operating Level=19.25m
+
+// Pike //
+Nodes.Upper Pike.Minimum Operating Level=$Operations.f_PikeOps
+Nodes.Upper Pike.Maximum Operating Level=$Operations.f_PikeOps
+
+//Initial Leaf Litter on Floodplains. units are kg/ha
+Nodes.Mundic.Constituent Data.DOC.Processing Model.Initial Leaf Dry Matter Non Readily Degradable=[[14.8 8806][18 8806]]
+Nodes.Mundic.Constituent Data.DOC.Processing Model.Initial Leaf Dry Matter Readily Degradable=[[14.8 3774][18 3774]]
+Nodes.Upper Pike.Constituent Data.DOC.Processing Model.Initial Leaf Dry Matter Non Readily Degradable=[[14.7 4515][18 4515]]
+Nodes.Upper Pike.Constituent Data.DOC.Processing Model.Initial Leaf Dry Matter Readily Degradable=[[14.7 1935][18 1935]]
+
+// Lock5 //
+Nodes.Lock 5.Minimum Operating Level=$Operations.f_Lock5_Ops
+Nodes.Lock 5.Maximum Operating Level=$Operations.f_Lock5_Ops
+
+// Katarapko//
+Nodes.Katarapko.Minimum Operating Level=$Operations.f_KatOps
+Nodes.Katarapko.Maximum Operating Level=$Operations.f_KatOps
+
+// Lock 4 //
+Nodes.Lock 4.Minimum Operating Level=$Operations.f_Lock4Ops
+Nodes.Lock 4.Maximum Operating Level=$Operations.f_Lock4Ops
+
+// Lock 3 //
+Nodes.Lock 3.Minimum Operating Level=$Operations.f_Lock3Ops
+Nodes.Lock 3.Maximum Operating Level=$Operations.f_Lock3Ops
+
+// Lock 2//
+Nodes.Lock 2.Minimum Operating Level=$Operations.f_Lock2Ops
+Nodes.Lock 2.Maximum Operating Level=$Operations.f_Lock2Ops
+
+//Lock 1//
+Nodes.Lock 1.Minimum Operating Level=3.2m
+Nodes.Lock 1.Maximum Operating Level=3.2m

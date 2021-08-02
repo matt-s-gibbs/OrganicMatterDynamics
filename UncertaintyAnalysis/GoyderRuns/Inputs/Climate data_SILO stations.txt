@@ -1,0 +1,29 @@
+Location		SILO station
+
+Lock 1			24578
+
+Lock 2			24012
+
+Lock 3			24007
+Lake Bonney		24007
+
+Lock 4			24008
+Berri			24008
+Gurra Gurra		24008
+Katarapko		24008
+
+Lock 5			24016
+Mundic			24016
+Upper Pike		24016
+Lake Merreti		24016
+Lake Woolpolool		24016
+
+Lock 6			24004
+Chowilla		24004
+
+Swan Reach (R120)	24564
+Walker Flat (R121)	24547
+Mannum (R122)		24517
+
+Lake Alexandrina	24539
+Lake Albert		24539

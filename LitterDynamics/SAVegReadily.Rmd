@@ -1,0 +1,263 @@
+---
+title: "SAVegReadily"
+author: "Matt Gibbs"
+date: "1 August 2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(readxl)
+library(car)
+library(fitdistrplus)
+library(tidyverse)
+```
+
+The total litter loads dont add up, e.g. 1 g/m2/d * 600 days since flooded is less than the standing load. Therefore, consider only the readily available, which is expected to have been completed leached during the 2016 flood.
+
+## Fall Rate
+
+Determine the fall rate of readily available material from the litter traps. 
+
+```{r FallRate}
+#Fall rate readily available
+FallLeaf<-read_xlsx("Leaf litter_standing load and litter fall rate data file for MG_01032019.xlsx",
+                    "Leaf litter trap data",range = cell_cols("A:R"))
+
+FallLeaf<-FallLeaf %>% filter(!is.na(Leaf...10)) %>% dplyr::select(Tree=`Coded name`,Species,Leaf=`Leaf...14`,SUM)  %>% 
+  group_by(Tree) %>% #some multiple samples for the same site, add together
+  summarise(Leaf=sum(Leaf),SUM=sum(SUM)) %>% 
+    mutate(Readily=Leaf/SUM) #fration of leaf trap litter readily available
+
+Fallrg<-read_xlsx("Leaf litter_standing load and litter fall rate data file for MG_01032019.xlsx",
+                  "Leaf litter trap data",range = cell_cols("AN:AQ")) %>% drop_na() %>% mutate(Vegetation="red gum woodland")
+
+Fallrates<-read_xlsx("Leaf litter_standing load and litter fall rate data file for MG_01032019.xlsx",
+                  "Leaf litter trap data",range = cell_cols("AZ:BC")) %>% drop_na() %>% mutate(Vegetation="black box woodland") %>%  
+  bind_rows(Fallrg) %>% 
+  left_join(FallLeaf,by="Tree") %>% 
+  mutate(FallRate_Readily=`g/m2/day`*Readily) #readily available fall rate
+
+
+p<-ggplot(Fallrates) + geom_density(aes(FallRate_Readily,fill=Vegetation),alpha=0.2)+
+  geom_density(aes(FallRate_Readily,fill="All"),alpha=0.2)+xlab(expression("Fall rate of leaves"~(gm^-2*d^-1)))+
+  theme_bw()
+print(p)
+#ggsave("Plots/FallRateDistribution.png",p,width=15,height=8,units="cm")
+
+p<-ggplot(Fallrates) + geom_histogram(aes(x=Readily,y=..density..,fill=Vegetation),bins=8,position="dodge")+
+  geom_density(aes(Readily,fill="All"),alpha=0.2)+xlab("Fraction readily available")+theme_bw()
+ggsave("Plots/Readily Available.png",p,width=15,height=8,units="cm")
+
+Fallstats<-Fallrates %>% group_by(Vegetation) %>% summarise(X=median(FallRate_Readily,na.rm = TRUE))
+
+```
+Difference bewteen red gum and black box is not great, medians are `r round(Fallstats$X,2)` g/m2/d. Overall median is `r median(Fallrates$FallRate_Readily,na.rm=TRUE)` g/m2/d.
+
+```{r}
+Fallrates<-Fallrates %>% filter(!is.na(Readily))
+bc<-powerTransform(Fallrates %>% pull(Readily))$lambda
+bc<-0.3 #round off to 0.3, same as standing load/fall rate
+Fallrates<-Fallrates %>% mutate(Readily_BC=Readily^bc)
+fitReadily<-fitdist((Fallrates %>% pull(Readily))^bc,"norm")
+fitReadilytable<-tibble(mean=fitReadily$estimate[1],sd=fitReadily$estimate[2],trans=bc,Vegetation="ReadilyAvailable")
+
+dat<-tibble(samples=rnorm(1000,fitReadily$estimate[1],fitReadily$estimate[2]))
+dat$dat="Distribution"
+
+p<-ggplot(Fallrates)+geom_histogram(aes(x=Readily_BC,y=..density..),bins=20)+
+  geom_density(data=dat,aes(samples),fill="red",alpha=0.2)+
+theme_bw()+xlab("Transformed proportion of readily available material")
+ggsave("Plots/transformedFallRate.png",p,width=7.5,height=7.5,units="cm")
+
+dat2<-Fallrates %>% dplyr::select(samples=Readily_BC) %>% mutate(dat="Transformed Data")
+dat2<-rbind(dat2,dat)
+
+a<-ks.test(dat2 %>% filter(dat=="Transformed Data") %>% pull(samples),pnorm,fitReadilytable$mean,fitReadilytable$sd)
+  stats<-data.frame(D=a$statistic,p=a$p.value,x=min(dat$samples),y=1)
+  
+stats$label<-paste0("D=",round(stats$D,2),"\n","p=",round(stats$p,2))
+
+
+p<-ggplot(dat2)+stat_ecdf(aes(samples,colour=dat))+
+  geom_text(data=stats,aes(x=x,y=y,label=label),vjust="top",hjust="left")+
+  theme_bw()+theme(legend.title = NULL)+ylab("Probability of exceedance")+xlab("Fraction readily available (transformed)")+scale_colour_manual(values=c("red","dark grey"),name="Data")+theme(legend.position = "top")
+ggsave("Plots/transformedFallRateCDF.png",p,width=15,height=10,units="cm")
+
+```
+```{r}
+
+colours<-c("#bababa","#404040","#f4a582","#ca0020")
+
+FallratesDsn<-dat %>% mutate(samples=samples^(1/0.3)) %>% mutate(dat=tolower(dat))
+p<-ggplot(Fallrates) + geom_histogram(aes(x=Readily,y=..density..,fill=Vegetation),bins=8,position="dodge")+
+  geom_density(aes(Readily,fill="all data"),alpha=0.3)+
+  geom_density(data=FallratesDsn,aes(samples,fill="distribution"),alpha=0.3)+
+  xlab("Readily degradable fraction")+theme_bw()+xlim(c(0,1))+
+  scale_fill_manual(values=colours)+theme(legend.position="top",legend.title = element_blank())+
+  guides(fill=guide_legend(nrow=2,byrow=TRUE))
+ggsave("Plots/FallRate.tiff",p,width=8,height=12,units="cm",compression = "lzw",dpi=600)
+
+dat2<-Fallrates %>% select(samples=Readily)%>% 
+  mutate(dat="all data") %>% 
+  bind_rows(FallratesDsn)
+
+p<-ggplot(dat2)+stat_ecdf(aes(samples,colour=dat))+
+  geom_text(data=stats,aes(x=x,y=y,label=label),vjust="top",hjust="left")+
+  theme_bw()+theme(legend.title = NULL)+ylab("Probability of exceedance")+xlab("Fraction readily available")+scale_colour_manual(values=colours[c(1,3)])+theme(legend.position = "top")+
+  xlim(c(0,1))
+ggsave("Plots/FallRateCDF.png",p,width=11,height=10,units="cm")
+```
+
+
+## Standing Loads
+
+Standing loads of readily available material, derived from leaves and US vegetation. Given similarity between shrublands and lignum, combine.
+
+```{r pressure, echo=FALSE}
+Standing<-read_xlsx("Leaf litter_standing load and litter fall rate data file for MG_01032019.xlsx","All sites standing load data") %>% 
+  mutate(Vegetation=tolower(Vegetation...2))
+SAVegClass<-read_xlsx("Leaf litter_standing load and litter fall rate data file for MG_01032019.xlsx","Standing load site details")
+SAVegClass <- SAVegClass %>% mutate(SAVeg=tolower(SAVeg),VegClass=SAVeg) %>%
+  mutate(VegClass=str_replace_all(VegClass,"semi-saline shrublands","shrublands"),
+         VegClass=str_replace_all(VegClass,"saline samphire or chenopod shrublands","shrublands"),
+         VegClass=str_replace_all(VegClass,"low woodlands and shrublands","mixed woodland"),
+         VegClass=str_replace_all(VegClass,"low chenopod shrubland"  ,"shrublands"),
+         VegClass=str_replace_all(VegClass,"tall chenopod shrubland"  ,"shrublands"),
+         VegClass=str_replace_all(VegClass,"river cooba woodland"  ,"black box woodlands"),
+         VegClass=str_replace_all(VegClass,"red gum woodlands"  ,"red gum woodland"),
+         VegClass=str_replace_all(VegClass,"black box woodlands"  ,"black box woodland"),
+         VegClass=str_replace_all(VegClass,"sedgeland/aquatic grassland"  ,"persistent water"),
+         VegClass=str_replace_all(VegClass,"forbland"  ,"shrublands"),
+         VegClass=str_replace_all(VegClass,"lignum"  ,"lignum shrubland"),
+         VegClass=str_replace_all(VegClass,"shrubland shrubland"  ,"shrubland"),
+         VegClass=str_replace_all(VegClass,"red gum forest"  ,"red gum woodland"))
+
+
+Standing<-Standing %>% full_join(SAVegClass,by="Site")
+
+Standing<-Standing  %>% #             VegClass if using SAVeg
+  dplyr::select(Floodplain=Floodplain...1,Vegetation=VegClass,TotalAll=`TOM (g/m)...5`,Leafpc=`Leaf (%)`,USVeg=`US veg (%)`) %>%  #conflict between MASS and dplyr select functions
+    filter(!is.na(Vegetation)) %>%
+  filter(Vegetation!="persistent water") %>% 
+  mutate(Total=TotalAll*(Leafpc)/100,ReadilyFrac=(Leafpc)/100) %>% 
+  filter(Total>0)
+
+#histograms
+ggplot(Standing)+geom_histogram(aes(x=Total,y=..density..),bins=15)+
+  facet_wrap(vars(Vegetation),ncol=2,scales="free_y")+theme_bw()+
+  xlab(expression("standing load of leaves"~(gm^-2)))
+
+#densities in the same pannel
+ggplot(Standing)+geom_density(aes(x=Total,fill=Vegetation),alpha=0.2)+
+  theme_bw()+
+  xlab(expression("standing load of leaves"~(gm^-2)))+
+  xlim(c(0,1000))
+
+
+ggplot(Standing)+geom_density(aes(x=ReadilyFrac,fill=Vegetation),alpha=0.2)+
+  theme_bw()+
+  xlab(expression("Fraction Readily Available"))
+
+# Standing <- Standing %>% 
+#   mutate(Vegetation=str_replace_all(Vegetation,"lignum shrublands","shrublands"))
+
+Pars<-Standing%>% 
+  group_by(Vegetation) %>% 
+  summarise(med_orig = median(Total),mean_orig=mean(Total),max_orig=max(Total),med_ReailyFrac=median(ReadilyFrac),mean_ReadilyFrac=mean(ReadilyFrac))
+
+```
+
+```{r}
+knitr::kable(Pars)
+```
+
+
+
+# Litter Decay Rate
+
+Black box and red gum litter loads, fractions and fall rates are similar. Base on red gum. Use this decay rate in the model, and to convert leaf standing load to a fall rate distribution for all veg types.
+
+```{r}
+
+DaysToAccumulate<<-as.numeric(as.Date("2018-08-01")-as.Date("2016-12-25")) #average sampling date - day water level receeded to pool level
+StandingLoad<<-median(Standing %>% filter(Vegetation=="black box woodland"|Vegetation=="red gum woodland") %>% pull(Total),na.rm=TRUE)
+FallRate<<-median(Fallrates %>% filter(Vegetation=="black box woodland"|Vegetation=="red gum woodland") %>% pull(FallRate_Readily),na.rm=TRUE)
+
+AccumulateLoad<-function(rate)
+{
+  ReadilyLoad<-0
+  for(i in 1:DaysToAccumulate)
+  {
+    ReadilyLoad=ReadilyLoad*exp(-rate)+FallRate
+  }
+  return((ReadilyLoad-StandingLoad)^2)
+}
+decay<-optimise(AccumulateLoad,c(0,0.1))$`minimum`
+
+#amount of decay over 600 days at a rate of 0.002. Yesterday has decayed exp(-0.002), day before had decayed exp(-0.002*2), etc
+LoadtoFall<-0
+for(i in 1:DaysToAccumulate)
+{
+  LoadtoFall=LoadtoFall+exp(-i*decay)
+}
+
+```
+
+
+
+
+```{r}
+#Box-Cox transformation of standing loads
+#https://stackoverflow.com/questions/43849952/how-to-fit-distribution-on-multiple-columns-using-broom-and-dplyr
+transform <-Standing %>% dplyr::select(Vegetation,Total) %>% 
+ # filter(!((Vegetation=="shrublands"|Vegetation=="lignum shrublands")&Total>100)) %>% #remove outliers for these two, result in low/negative transformation
+  group_by(Vegetation) %>% 
+  drop_na() %>% 
+ # filter(Total>0) %>%  #get rid of 0 load shrubs
+  mutate(Total=Total+0.00001) %>% #needs to be non zero for transform
+  summarise(trans = powerTransform(Total)$lambda)
+
+#use lignum for shrubs as well, very skewed!
+transform<-transform %>% mutate(trans=replace(trans,Vegetation=="shrublands",0.2))
+transform<-transform %>% mutate(trans=replace(trans,Vegetation=="lignum shrubland",0.2))
+
+StandingTransposed<-inner_join(Standing,transform,by="Vegetation") %>% 
+  group_by(Total,trans,Vegetation) %>% 
+  do(Total_BC=.$Total^.$trans) %>% unnest(cols = c(Total_BC)) %>% ungroup() 
+
+BCPars<-StandingTransposed%>% #at this point, have the transformed values for each vegetation type
+  group_by(Vegetation) %>% 
+  summarise(vec = Total_BC %>% list) %>% 
+  mutate(mod = map(vec, ~fitdist(.x, "norm") )) %>% 
+  mutate(mean = map(mod, ("estimate")) %>% map_dbl("mean")) %>% 
+  mutate(sd = map(mod, ("estimate")) %>% map_dbl("sd")) %>% 
+  dplyr::select(-vec, -mod) %>%
+ # unnest() %>% 
+  inner_join(transform,by="Vegetation") %>% 
+  full_join(Pars,by="Vegetation")
+
+
+dat<-BCPars %>% 
+  mutate(samples=map2(mean,sd,~rnorm(1000,.x,.y))) %>% 
+  dplyr::select(Vegetation,samples,trans) %>% 
+  unnest(cols = c(samples))
+
+dat2<-dat %>%
+  mutate(samples_orig=samples^(1/trans))
+
+p<-ggplot(Standing)+geom_histogram(aes(x=Total,y=..density..),bins=15)+
+  geom_density(data=dat2,aes(samples_orig),alpha=0.3,fill="red")+
+  facet_wrap(vars(Vegetation),ncol=1,scales="free_y")+theme_bw()+
+  xlab(expression("Standing load of leaves"~(g.m^-2)))+xlim(c(0,1000))
+ggsave("Plots/StandingLoads.png",p,width = 8,height=22,units="cm")
+
+dat3<-dat2 %>% mutate(fallrate=samples_orig/LoadtoFall)
+
+p<-ggplot(dat3)+geom_histogram(data=Fallrates,aes(x=FallRate_Readily,y=..density..),bins=10)+
+  geom_density(aes(fallrate),alpha=0.3,fill="red")+
+  facet_wrap(vars(Vegetation),ncol=3,scales="free_y")+theme_bw()+
+  xlab(expression("Leaf litter accumulation rate"~(g.m^-2*.d^-1)))+xlim(c(0,1.5))
+ggsave("Plots/FallRateGenerated.tiff",p,width = 18,height=10,units="cm",compression = "lzw",dpi=600)
+```

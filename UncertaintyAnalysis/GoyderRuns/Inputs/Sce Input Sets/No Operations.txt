@@ -1,0 +1,34 @@
+﻿
+Nodes.Inflow 28.Flow=10000 ML/d
+Nodes.Inflow 28.Constituents.Salt - Variable Gauged Concentration.Data=150 mg/l
+Nodes.Inflow 28.Constituents.DO - Variable Gauged Concentration.Data=20 mg/l
+Nodes.Inflow 28.Constituents.DOC - Variable Gauged Concentration.Data=0 mg/l
+Nodes.Gauge 107.Constituents.Salt - Variable Gauged Concentration.Data=0 mg/l
+
+// Lock 6 //
+Nodes.Lock 6.Minimum Operating Level=19.25m
+Nodes.Lock 6.Maximum Operating Level=19.25m
+// Chowilla //
+Nodes.Chowilla Regulator 254.Minimum Operating Level=16.45m
+Nodes.Chowilla Regulator 254.Maximum Operating Level=16.45m
+// Lock5 //
+Nodes.Lock 5.Minimum Operating Level=16.3m
+Nodes.Lock 5.Maximum Operating Level=16.3m
+// Pike //
+Nodes.Upper Pike.Minimum Operating Level=14.55m
+Nodes.Upper Pike.Maximum Operating Level=14.55m
+// Lock 4 //
+Nodes.Lock 4.Minimum Operating Level=13.2m
+Nodes.Lock 4.Maximum Operating Level=13.2m
+// Katarapko//
+Nodes.Katarapko.Minimum Operating Level=9.9m
+Nodes.Katarapko.Maximum Operating Level=9.9m
+// Lock 3 //
+Nodes.Lock 3.Minimum Operating Level=9.8m
+Nodes.Lock 3.Maximum Operating Level=9.8m
+// Lock 2//
+Nodes.Lock 2.Minimum Operating Level=6.1m
+Nodes.Lock 2.Maximum Operating Level=6.1m
+//Lock 1//
+Nodes.Lock 1.Minimum Operating Level=3.2m
+Nodes.Lock 1.Maximum Operating Level=3.2m

@@ -1,0 +1,1 @@
+..\Source_4.8.2.8880_Beta\RiverSystem.CommandLine.exe -m Client -o "out.res.csv" -a "net.tcp://localhost:8524/eWater/Services/RiverSystemService"
